@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body background="https://cdn6.f-cdn.com/files/download/117716550/3ddesignti.jpg">
+    <h1 id="na">Melodies Songs</h1>
+    <div class="main_div">
+        <div class="music_container">
+            <h2 id="title">Shri krishna Govind</h2>
+            <h3 id="artist">Jubin Nautiyal</h3>
+            <div class="img_container">
+                <img src="image/krishna-1.jpg" alt ="">
+            </div>
+            <audio src="music/krishna-1.mp3"></audio>
+            <div class="music_controls">
+                <i class="fas fa-backward" id="prev" title="Previous"></i>
+                <i class="fas fa-play main_button" id="play" title="Play"></i>
+                <i class="fas fa-forward" id="next" title="Next"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        const music = document.querySelector("audio");
+        const img = document.querySelector("img");
+        const play = document.getElementById("play");
+        const artist = document.getElementById("artist");
+        const title = document.getElementById("title");
+        const prev = document.getElementById("prev");
+        const next = document.getElementById("next");
+        const songs = [
+        {
+            name:"krishna-1",
+            title:"Shri krishna Govind",
+            artist:"Jubin Nautiyal",
+        },
+        {
+            name:"krishna-2",
+            title:"Radha Krishna",
+            artist:"Words Of Love",
+        },
+        {
+            name:"krishna-3",
+            title:"Tum Prem HO",
+            artist:"RadhaKrishna",
+        },
+        {
+            name:"hanumanchalisa",
+            title:"HANUMAN CHALISA",
+            artist:"Jagjit Singh",
+        },
+        {
+            name:"Hanumanji-1",
+            title:"Bajarang Ban",
+            artist:"Jagjit Singh",
+        },
+        {
+            name:"Ram",
+            title:"Hey Ram Hey Ram",
+            artist:"Jagjit singh",
+        },
+        {
+            name:"shivji-1",
+            title:"Mahmritunjay Mantra",
+            artist:"Shekharan",
+        },
+        {
+            name:"shivji-2",
+            title:"Shiv Kailasho k Wassi",
+            artist:"Hansraj",
+        },
+        {
+            name:"Addhore",
+            title:"Addhore tum Addhore hum",
+            artist:"Melodies",
+        },
+        {
+            name:"JONY",
+            title:"JONY",
+            artist:"Hammali & Navai",
+        },
+        {
+            name:"Kehte",
+            title:"Kehte hai Khuda ",
+            artist:"Rabta",
+        },
+        {
+            name:"Kho",
+            title:"Kho gaye hum ",
+            artist:"Jasleen R",
+        },
+        {
+            name:"Linkin",
+            title:"Linkin Park",
+            artist:"Linkin Park",
+        },
+        {
+            name:"Manja",
+            title:"Oo manja tera",
+            artist:"Kai Poche",
+        },
+        {
+            name:"MastMagan",
+            title:"Man Mast Magan",
+            artist:"Lofi",
+        },
+        {
+            name:"My_Worst",
+            title:"I need somebody..",
+            artist:"Pink Sweat$",
+        },
+        {
+            name:"Neki",
+            title:"Neki Ki raah",
+            artist:"Arjit Singh",
+        },
+        {
+            name:"Pal",
+            title:"Pyar k Pal",
+            artist:"KK",
+        },
+        {
+            name:"TumHo",
+            title:"Tum Ho pass mere",
+            artist:"Mohit Chauhan",
+        },
+        {
+            name:"thapa-2",
+            title:"Laree Choote",
+            artist:"Unknown",
+        },
+    ];
+        let isplaying= false;
+        const playMusic=()=>{
+            isplaying=true;
+            music.play();
+            play.classList.replace("fa-play","fa-pause");
+            img.classList.add("anime");
+        };
+        const PauseMusic=()=>{
+            isplaying=false;
+            music.pause();
+            play.classList.replace("fa-pause","fa-play");
+            img.classList.add("anime");
+        };
+        play.addEventListener('click',()=>{
+            if(isplaying){
+                PauseMusic();
+            }else{
+                playMusic();
+            }
+        });
+        const loadSongs = (songs)=>{
+            title.textContent = songs.title;
+            artist.textContent = songs.artist;
+            music.src = "music/"+ songs.name + ".mp3";
+            img.src = "image/" + songs.name + ".jpg";
+        }
+        songIndex=0;
+        
+        const nextSong =  ()=>{
+            songIndex = (songIndex + 1)% songs.length;
+            loadSongs(songs[songIndex]);
+            playMusic();
+        };
+        const prevSong =  ()=>{
+            songIndex = (songIndex - 1 + songs.length)%songs.length;
+            loadSongs(songs[songIndex]);
+            playMusic();
+        };
+        next.addEventListener("click",nextSong);
+        prev.addEventListener("click",prevSong);
+    </script>
+</body>
+</html>
